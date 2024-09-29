@@ -1,0 +1,288 @@
+[29/09, 10:29 am] Vijji 🙂: import java.util.Scanner;
+
+public class RegistrationForm {
+    public static void main(String[] args) {
+        // Create a Scanner object to get input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Get user's name
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+
+        // Get user's age
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+        scanner.nextLine();  // consume the newline character
+
+        // Get user's country
+        System.out.print("Enter your country: ");
+        String country = scanner.nextLine();
+
+        // Display the registration details
+        System.out.println("Welcome " + name + ". Your age is " + age + " and you are from " + country);
+
+        // Close the scanner to prevent resource leaks
+        scanner.close();
+    }
+}
+[29/09, 10:30 am] Vijji 🙂: import java.util.Scanner;
+
+public class SquareAndCubeCalculator {
+
+    // Method to find the square of a number
+    public static double FindSquare(double number) {
+        return number * number;
+    }
+
+    // Method to find the cube of a number
+    public static double FindCube(double number) {
+        return number * number * number;
+    }
+
+    public static void main(String[] args) {
+        // Create a Scanner object to get input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter a number
+        System.out.print("Enter a number: ");
+        double number = scanner.nextDouble();
+
+        // Calculate square and cube using the defined methods
+        double square = FindSquare(number);
+        double cube = FindCube(number);
+
+        // Display the results
+        System.out.println("The square of " + number + " is: " + square);
+        System.out.println("The cube of " + number + " is: " + cube);
+
+        // Close the scanner
+        scanner.close();
+    }
+}
+[29/09, 10:31 am] Vijji 🙂: import java.util.Scanner;
+
+public class CompareNumbers {
+
+    public static void main(String[] args) {
+        // Create a Scanner object to get input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Declare variables
+        int x, y;
+
+        // Obtain value for x from the user
+        System.out.print("Enter the value for x: ");
+        x = scanner.nextInt();
+
+        // Obtain value for y from the user
+        System.out.print("Enter the value for y: ");
+        y = scanner.nextInt();
+
+        // Compare x and y, store result in a boolean variable
+        boolean result = x < y;
+
+        // Print the result of the comparison
+        System.out.println("The result of whether x is less than y is " + result);
+
+        // Close the scanner
+        scanner.close();
+    }
+}
+[29/09, 10:34 am] Vijji 🙂: import java.time.LocalDate;
+import java.time.Period;
+import java.util.Scanner;
+
+// Class Person
+public class Person {
+
+    // Private fields
+    private String firstName;
+    private String lastName;
+    private LocalDate dob; // Using LocalDate for date of birth
+
+    // Public properties (getters and setters for firstName, lastName, and dob)
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    // Read-only property that checks if the person is an Adult or Child
+    public String getAdult() {
+        int age = GetAge(dob);
+        if (age >= 18) {
+            return "Adult";
+        } else {
+            return "Child";
+        }
+    }
+
+    // Method to calculate the age of the person
+    public int GetAge(LocalDate dob) {
+        LocalDate currentDate = LocalDate.now();
+        if ((dob != null) && (dob.isBefore(currentDate))) {
+            return Period.between(dob, currentDate).getYears();
+        } else {
+            return 0;
+        }
+    }
+
+    // Method to display details of the person
+    public void DisplayDetails() {
+        int age = GetAge(dob);
+        System.out.println("First Name: " + firstName);
+        System.out.println("Last Name: " + lastName);
+        System.out.println("Age: " + age);
+        System.out.println(getAdult());
+    }
+}
+
+// Main class Program
+public class Program {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Create an object of the Person class
+        Person person = new Person();
+
+        // Get the first name from the user
+        System.out.print("Enter first name: ");
+        String firstName = scanner.nextLine();
+        person.setFirstName(firstName);
+
+        // Get the last name from the user
+        System.out.print("Enter last name: ");
+        String lastName = scanner.nextLine();
+        person.setLastName(lastName);
+
+        // Get the date of birth from the user in yyyy/mm/dd format
+        System.out.print("Enter date of birth in yyyy/mm/dd format: ");
+        String dobInput = scanner.nextLine();
+        LocalDate dob = LocalDate.parse(dobInput);
+        person.setDob(dob);
+
+        // Display the details of the person
+        System.out.println();
+        person.DisplayDetails();
+
+        // Close the scanner
+        scanner.close();
+    }
+}
+[29/09, 10:36 am] Vijji 🙂: import java.util.Scanner;
+
+// Base class Game
+public class Game {
+    // Auto-implemented properties
+    private String name;
+    private int maxNumPlayers;
+
+    // Getters and setters for the properties
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getMaxNumPlayers() {
+        return maxNumPlayers;
+    }
+
+    public void setMaxNumPlayers(int maxNumPlayers) {
+        this.maxNumPlayers = maxNumPlayers;
+    }
+
+    // Override the Object class's toString method
+    @Override
+    public String toString() {
+        return "Maximum number of players for " + name + " is " + maxNumPlayers;
+    }
+}
+
+// Child class GameWithTimeLimit that inherits from Game
+public class GameWithTimeLimit extends Game {
+    // Property to store the time limit
+    private int timeLimit;
+
+    // Getter and setter for time limit
+    public int getTimeLimit() {
+        return timeLimit;
+    }
+
+    public void setTimeLimit(int timeLimit) {
+        this.timeLimit = timeLimit;
+    }
+
+    // Override the toString method to include time limit
+    @Override
+    public String toString() {
+        // Call the base class's toString and add the time limit
+        return super.toString() + "\nTime Limit for " + getName() + " is " + timeLimit + " minutes";
+    }
+}
+
+// Main class Program
+public class Program {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get input for the game without a time limit
+        System.out.print("Enter a game: ");
+        String gameName = scanner.nextLine();
+        System.out.print("Enter the maximum number of players: ");
+        int maxPlayers = scanner.nextInt();
+
+        // Create an object of Game
+        Game game = new Game();
+        game.setName(gameName);
+        game.setMaxNumPlayers(maxPlayers);
+
+        // Display the game details
+        System.out.println(game.toString());
+
+        // Clear buffer
+        scanner.nextLine();
+
+        // Get input for the game with a time limit
+        System.out.print("Enter a game that has time limit: ");
+        String timedGameName = scanner.nextLine();
+        System.out.print("Enter the maximum number of players: ");
+        int timedGameMaxPlayers = scanner.nextInt();
+        System.out.print("Enter the time limit in minutes: ");
+        int timeLimit = scanner.nextInt();
+
+        // Create an object of GameWithTimeLimit
+        GameWithTimeLimit timedGame = new GameWithTimeLimit();
+        timedGame.setName(timedGameName);
+        timedGame.setMaxNumPlayers(timedGameMaxPlayers);
+        timedGame.setTimeLimit(timeLimit);
+
+        // Display the timed game details
+        System.out.println(timedGame.toString());
+
+        // Close the scanner
+        scanner.close();
+    }
+}
