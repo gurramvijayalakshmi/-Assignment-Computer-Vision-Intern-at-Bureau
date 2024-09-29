@@ -1,3 +1,110 @@
+import java.util.Scanner;
+
+// Public class Account
+public class Account {
+
+    // Private attributes
+    private int id;
+    private String accountType;
+    private double balance;
+
+    // Public properties (getters and setters)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    // Empty parameter constructor
+    public Account() {
+    }
+
+    // 3-parameter constructor
+    public Account(int id, String accountType, double balance) {
+        this.id = id;
+        this.accountType = accountType;
+        this.balance = balance;
+    }
+
+    // Method to withdraw amount
+    public boolean Withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Method to get account details
+    public String GetDetails() {
+        return "Account Id: " + id + "\nAccount Type: " + accountType + "\nBalance: " + balance;
+    }
+}
+
+// Public class Program with the Main method
+public class Program {
+
+    public static void main(String[] args) {
+        // Create a Scanner object to get input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Get account details from the user
+        System.out.print("Enter account id: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();  // Consume newline
+
+        System.out.print("Enter account type: ");
+        String accountType = scanner.nextLine();
+
+        System.out.print("Enter account balance: ");
+        double balance = scanner.nextDouble();
+
+        // Create an object of Account using the constructor
+        Account account = new Account(id, accountType, balance);
+
+        // Display account details
+        System.out.println("\n" + account.GetDetails());
+
+        // Prompt the user to enter the amount to withdraw
+        System.out.print("\nEnter amount to withdraw: ");
+        double amountToWithdraw = scanner.nextDouble();
+
+        // Call the Withdraw method and check if withdrawal is successful
+        boolean success = account.Withdraw(amountToWithdraw);
+
+        if (success) {
+            // If successful, display the new balance
+            System.out.println("New Balance: " + account.getBalance());
+        } else {
+            // If not successful, display insufficient balance message
+            System.out.println("Insufficient Balance");
+        }
+
+        // Close the scanner
+        scanner.close();
+    }
+}
+
+
 [29/09, 10:29 am] Vijji 🙂: import java.util.Scanner;
 
 public class RegistrationForm {
